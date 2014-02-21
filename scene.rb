@@ -46,23 +46,20 @@ describe Scene do
 		@triangle = Triangle.new(@tripoint1, @tripoint2, @tripoint3)
 		@circle = Circle.new(@circpoint, @circradius)
 		@scene = Scene.new
+		@scene.add_shape(@triangle)
+		@scene.add_shape(@circle)
 	end
 
 	it "should be able to add shapes" do
 		@scene.add_shape(@rectangle)
-		@scene.add_shape(@triangle)
-		@scene.add_shape(@circle)
 		@scene.shape_count.must_equal 3
 	end
 
 	it "should be able to calculate the total area" do
-		@scene.add_shape(@circle)
 		@scene.total_area.must_be :> , 0
 	end
 
 	it "should be able to remove shapes" do
-		@scene.add_shape(@circle)
-		@scene.add_shape(@triangle)
 		@scene.remove_shape(@circle)
 		@scene.shape_count.must_equal 1
 	end
